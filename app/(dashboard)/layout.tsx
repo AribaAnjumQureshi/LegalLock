@@ -1,4 +1,4 @@
-import { Sidebar } from '@/components/sidebar'
+import Sidebar from '@/components/sidebar'
 import { AuthGuard } from '@/components/auth-guard'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
