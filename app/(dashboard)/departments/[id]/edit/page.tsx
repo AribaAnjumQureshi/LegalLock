@@ -92,7 +92,7 @@ export default function EditDepartmentPage() {
       setError(
         err instanceof Error
           ? err.message
-          : 'Department load nahi ho pa raha hai.'
+          : 'System Security load nahi ho pa raha hai.'
       )
     } finally {
       setLoading(false)
@@ -117,12 +117,12 @@ export default function EditDepartmentPage() {
     const cleanDescription = description.trim()
 
     if (!cleanName) {
-      setError('Department name is required.')
+      setError('System Security name is required.')
       return
     }
 
     if (!cleanCode) {
-      setError('Department code is required.')
+      setError('System Security code is required.')
       return
     }
 
@@ -152,7 +152,7 @@ export default function EditDepartmentPage() {
       setError(
         err instanceof Error
           ? err.message
-          : 'Department update nahi ho pa raha hai.'
+          : 'System Security update nahi ho pa raha hai.'
       )
     } finally {
       setSaving(false)
@@ -165,7 +165,7 @@ export default function EditDepartmentPage() {
         <div className="mx-auto flex max-w-3xl items-center justify-center py-24">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Loader2 className="size-5 animate-spin" />
-            Loading department...
+            Loading System Security...
           </div>
         </div>
       </main>
@@ -178,12 +178,12 @@ export default function EditDepartmentPage() {
         <div className="mx-auto max-w-3xl">
           <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-5">
             <p className="text-sm font-semibold text-destructive">
-              Department not found
+              System Security not found
             </p>
 
             <p className="mt-1 text-sm text-muted-foreground">
               {error ||
-                'The requested department could not be found.'}
+                'The requested System Security could not be found.'}
             </p>
 
             <Link
@@ -191,7 +191,7 @@ export default function EditDepartmentPage() {
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
             >
               <ArrowLeft className="size-4" />
-              Back to Departments
+              Back to System Security
             </Link>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function EditDepartmentPage() {
             className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             <ArrowLeft className="size-4" />
-            Back to Department
+            Back to System Security
           </Link>
 
           <div className="flex items-start gap-4">
@@ -218,15 +218,15 @@ export default function EditDepartmentPage() {
 
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                Department Management
+                System Security Management
               </p>
 
               <h1 className="mt-1 text-3xl font-bold tracking-tight">
-                Edit Department
+                Edit System Security
               </h1>
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Update the department information and details.
+                Update the System Security information and details.
               </p>
             </div>
           </div>
@@ -237,7 +237,7 @@ export default function EditDepartmentPage() {
             <div className="flex items-center justify-between gap-4">
               <div>
                 <h2 className="text-lg font-semibold">
-                  Department Information
+                  System Security Information
                 </h2>
 
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -273,7 +273,7 @@ export default function EditDepartmentPage() {
                   htmlFor="departmentName"
                   className="text-sm font-semibold"
                 >
-                  Department Name
+                  System Security Name
                   <span className="ml-1 text-destructive">
                     *
                   </span>
@@ -287,7 +287,7 @@ export default function EditDepartmentPage() {
                     setDepartmentName(event.target.value)
                   }
                   disabled={saving}
-                  placeholder="Enter department name"
+                  placeholder="Enter System Security name"
                   className="h-10 w-full rounded-md border bg-background px-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
@@ -297,7 +297,7 @@ export default function EditDepartmentPage() {
                   htmlFor="departmentCode"
                   className="text-sm font-semibold"
                 >
-                  Department Code
+                  System Security Code
                   <span className="ml-1 text-destructive">
                     *
                   </span>
@@ -313,12 +313,12 @@ export default function EditDepartmentPage() {
                     )
                   }
                   disabled={saving}
-                  placeholder="e.g. LEGAL-001"
+                  placeholder="e.g. SEC-001"
                   className="h-10 w-full rounded-md border bg-background px-3 text-sm uppercase outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
                 />
 
                 <p className="text-xs text-muted-foreground">
-                  Department code must remain unique.
+                  System Security code must remain unique.
                 </p>
               </div>
 
@@ -337,7 +337,7 @@ export default function EditDepartmentPage() {
                     setDescription(event.target.value)
                   }
                   disabled={saving}
-                  placeholder="Enter department description"
+                  placeholder="Enter System Security description"
                   rows={5}
                   className="w-full resize-none rounded-md border bg-background px-3 py-2 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
                 />
@@ -386,8 +386,4 @@ export default function EditDepartmentPage() {
               </button>
             </div>
           </form>
-        </section>
-      </div>
-    </main>
-  )
-}
+        </section

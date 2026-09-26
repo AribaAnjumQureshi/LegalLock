@@ -63,7 +63,7 @@ export default function DepartmentsPage() {
     } catch (err) {
       console.error(err)
       setError(
-        'Departments load nahi ho pa rahe hain. Backend/API check karein.'
+        'System Securities load nahi ho pa rahe hain. Backend/API check karein.'
       )
     } finally {
       setLoading(false)
@@ -107,17 +107,18 @@ export default function DepartmentsPage() {
           <div>
             <div className="mb-2 flex items-center gap-2">
               <Building2 className="size-5 text-primary" />
+
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Administration
               </span>
             </div>
 
             <h1 className="text-3xl font-bold tracking-tight">
-              Department Management
+              System Security Management
             </h1>
 
             <p className="mt-1 text-sm text-muted-foreground">
-              Manage departments, members, officers and lawyers.
+              Manage system security, members, officers and lawyers.
             </p>
           </div>
 
@@ -126,7 +127,7 @@ export default function DepartmentsPage() {
             className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
           >
             <Plus className="size-4" />
-            Create Department
+            Create System Security
           </Link>
         </div>
 
@@ -140,8 +141,9 @@ export default function DepartmentsPage() {
           <div className="rounded-lg border bg-card p-5 shadow-sm">
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-muted-foreground">
-                Total Departments
+                Total System Securities
               </p>
+
               <Building2 className="size-5 text-muted-foreground" />
             </div>
 
@@ -153,8 +155,9 @@ export default function DepartmentsPage() {
           <div className="rounded-lg border bg-card p-5 shadow-sm">
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-muted-foreground">
-                Active Departments
+                Active System Securities
               </p>
+
               <CheckCircle2 className="size-5 text-emerald-600" />
             </div>
 
@@ -166,8 +169,9 @@ export default function DepartmentsPage() {
           <div className="rounded-lg border bg-card p-5 shadow-sm">
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-muted-foreground">
-                Inactive Departments
+                Inactive System Securities
               </p>
+
               <XCircle className="size-5 text-muted-foreground" />
             </div>
 
@@ -181,6 +185,7 @@ export default function DepartmentsPage() {
               <p className="text-sm font-medium text-muted-foreground">
                 Total Members
               </p>
+
               <Users className="size-5 text-muted-foreground" />
             </div>
 
@@ -194,11 +199,11 @@ export default function DepartmentsPage() {
           <div className="flex flex-col gap-3 border-b p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-lg font-semibold">
-                Departments
+                System Securities
               </h2>
 
               <p className="text-sm text-muted-foreground">
-                View and manage all registered departments.
+                View and manage all registered System Securities.
               </p>
             </div>
 
@@ -213,6 +218,7 @@ export default function DepartmentsPage() {
                   loading ? 'animate-spin' : ''
                 }`}
               />
+
               Refresh
             </button>
           </div>
@@ -223,7 +229,7 @@ export default function DepartmentsPage() {
                 <RefreshCw className="mx-auto size-6 animate-spin text-muted-foreground" />
 
                 <p className="mt-3 text-sm text-muted-foreground">
-                  Loading departments...
+                  Loading System Securities...
                 </p>
               </div>
             </div>
@@ -232,11 +238,11 @@ export default function DepartmentsPage() {
               <Building2 className="size-10 text-muted-foreground/50" />
 
               <h3 className="mt-4 text-base font-semibold">
-                No departments found
+                No System Securities found
               </h3>
 
               <p className="mt-1 max-w-md text-sm text-muted-foreground">
-                Abhi koi department create nahi hua hai.
+                Abhi koi System Security create nahi hua hai.
               </p>
 
               <Link
@@ -244,7 +250,7 @@ export default function DepartmentsPage() {
                 className="mt-4 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
               >
                 <Plus className="size-4" />
-                Create Department
+                Create System Security
               </Link>
             </div>
           ) : (
@@ -253,7 +259,7 @@ export default function DepartmentsPage() {
                 <thead>
                   <tr className="border-b bg-muted/40">
                     <th className="px-5 py-3 text-left font-semibold">
-                      Department
+                      System Security
                     </th>
 
                     <th className="px-5 py-3 text-left font-semibold">
@@ -303,6 +309,7 @@ export default function DepartmentsPage() {
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-2">
                           <Users className="size-4 text-muted-foreground" />
+
                           {Number(department.member_count || 0)}
                         </div>
                       </td>

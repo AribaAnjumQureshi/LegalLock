@@ -44,19 +44,15 @@ type DepartmentRole =
 
 export default function DepartmentDetailsPage() {
   const params = useParams()
-
   const departmentId = String(params.id)
 
   const [department, setDepartment] =
     useState<Department | null>(null)
-
   const [members, setMembers] = useState<Member[]>([])
-
   const [loading, setLoading] = useState(true)
   const [changingStatus, setChangingStatus] = useState(false)
-  const [memberAction, setMemberAction] = useState<string | null>(
-    null
-  )
+  const [memberAction, setMemberAction] =
+    useState<string | null>(null)
   const [error, setError] = useState('')
 
   async function apiRequest(
@@ -126,7 +122,7 @@ export default function DepartmentDetailsPage() {
       setError(
         err instanceof Error
           ? err.message
-          : 'Department details load nahi ho pa rahe hain.'
+          : 'System Security details load nahi ho pa rahe hain.'
       )
     } finally {
       setLoading(false)
@@ -135,7 +131,6 @@ export default function DepartmentDetailsPage() {
 
   useEffect(() => {
     if (!departmentId) return
-
     loadDepartment()
   }, [departmentId])
 
@@ -149,8 +144,8 @@ export default function DepartmentDetailsPage() {
 
     const confirmed = window.confirm(
       nextStatus === 'INACTIVE'
-        ? 'Are you sure you want to deactivate this department?'
-        : 'Are you sure you want to activate this department?'
+        ? 'Are you sure you want to deactivate this System Security?'
+        : 'Are you sure you want to activate this System Security?'
     )
 
     if (!confirmed) return
@@ -173,8 +168,7 @@ export default function DepartmentDetailsPage() {
       )
 
       const updatedDepartment: Department =
-        data?.department ||
-        data
+        data?.department || data
 
       setDepartment((current) => ({
         ...(current || {}),
@@ -186,7 +180,7 @@ export default function DepartmentDetailsPage() {
       setError(
         err instanceof Error
           ? err.message
-          : 'Department status update nahi ho pa raha hai.'
+          : 'System Security status update nahi ho pa raha hai.'
       )
     } finally {
       setChangingStatus(false)
@@ -194,13 +188,12 @@ export default function DepartmentDetailsPage() {
   }
 
   async function changeMemberRole(member: Member) {
-    const currentRole =
-      String(
-        member.department_role || 'officer'
-      ).toLowerCase()
+    const currentRole = String(
+      member.department_role || 'officer'
+    ).toLowerCase()
 
     const enteredRole = window.prompt(
-      'Enter department role: officer, lawyer, or department_admin',
+      'Enter System Security role: officer, lawyer, or department_admin',
       currentRole
     )
 
@@ -215,7 +208,11 @@ export default function DepartmentDetailsPage() {
       'department_admin',
     ]
 
-    if (!validRoles.includes(newRole as DepartmentRole)) {
+    if (
+      !validRoles.includes(
+        newRole as DepartmentRole
+      )
+    ) {
       window.alert(
         'Invalid role. Use officer, lawyer, or department_admin.'
       )
@@ -256,10 +253,9 @@ export default function DepartmentDetailsPage() {
   }
 
   async function toggleMemberStatus(member: Member) {
-    const currentStatus =
-      String(
-        member.status || 'ACTIVE'
-      ).toUpperCase()
+    const currentStatus = String(
+      member.status || 'ACTIVE'
+    ).toUpperCase()
 
     const nextStatus =
       currentStatus === 'ACTIVE'
@@ -317,7 +313,7 @@ export default function DepartmentDetailsPage() {
       'this member'
 
     const confirmed = window.confirm(
-      `Are you sure you want to remove ${memberName} from this department?`
+      `Are you sure you want to remove ${memberName} from this System Security?`
     )
 
     if (!confirmed) return
@@ -353,7 +349,7 @@ export default function DepartmentDetailsPage() {
         <div className="mx-auto flex max-w-6xl items-center justify-center py-24">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Loader2 className="size-5 animate-spin" />
-            Loading department...
+            Loading System Security...
           </div>
         </div>
       </main>
@@ -366,12 +362,12 @@ export default function DepartmentDetailsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-5">
             <p className="text-sm font-semibold text-destructive">
-              Department not found
+              System Security not found
             </p>
 
             <p className="mt-1 text-sm text-muted-foreground">
               {error ||
-                'The requested department could not be found.'}
+                'The requested System Security could not be found.'}
             </p>
 
             <Link
@@ -379,7 +375,7 @@ export default function DepartmentDetailsPage() {
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
             >
               <ArrowLeft className="size-4" />
-              Back to Departments
+              Back to System Securities
             </Link>
           </div>
         </div>
@@ -423,7 +419,7 @@ export default function DepartmentDetailsPage() {
             className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             <ArrowLeft className="size-4" />
-            Back to Departments
+            Back to System Securities
           </Link>
 
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
@@ -508,7 +504,6 @@ export default function DepartmentDetailsPage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Active Members
             </p>
-
             <p className="mt-2 text-3xl font-bold">
               {activeMembers.length}
             </p>
@@ -518,7 +513,6 @@ export default function DepartmentDetailsPage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Officers
             </p>
-
             <p className="mt-2 text-3xl font-bold">
               {officerCount}
             </p>
@@ -528,7 +522,6 @@ export default function DepartmentDetailsPage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Lawyers
             </p>
-
             <p className="mt-2 text-3xl font-bold">
               {lawyerCount}
             </p>
@@ -536,24 +529,23 @@ export default function DepartmentDetailsPage() {
 
           <div className="rounded-lg border bg-card p-5 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Department Admins
+              System Security Admins
             </p>
-
             <p className="mt-2 text-3xl font-bold">
               {departmentAdminCount}
             </p>
           </div>
         </section>
-
         <section className="rounded-lg border bg-card shadow-sm">
           <div className="flex flex-col gap-4 border-b p-5 sm:flex-row sm:items-center sm:justify-between">
+
             <div>
               <h2 className="text-lg font-semibold">
-                Department Members
+                System Security Members
               </h2>
 
               <p className="mt-1 text-sm text-muted-foreground">
-                Manage officers and lawyers assigned to this department.
+                Manage officers and lawyers assigned to this System Security.
               </p>
             </div>
 
@@ -564,10 +556,12 @@ export default function DepartmentDetailsPage() {
               <Plus className="size-4" />
               Add Member
             </Link>
+
           </div>
 
           {members.length === 0 ? (
             <div className="p-10 text-center">
+
               <Users className="mx-auto size-10 text-muted-foreground/50" />
 
               <p className="mt-3 text-sm font-semibold">
@@ -575,14 +569,18 @@ export default function DepartmentDetailsPage() {
               </p>
 
               <p className="mt-1 text-xs text-muted-foreground">
-                Add an officer or lawyer to this department.
+                Add an officer or lawyer to this System Security.
               </p>
+
             </div>
           ) : (
             <div className="overflow-x-auto">
+
               <table className="w-full min-w-[1050px] text-sm">
+
                 <thead>
                   <tr className="border-b bg-muted/30 text-left">
+
                     <th className="px-5 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                       Member
                     </th>
@@ -592,7 +590,7 @@ export default function DepartmentDetailsPage() {
                     </th>
 
                     <th className="px-5 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Department Role
+                      System Security Role
                     </th>
 
                     <th className="px-5 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -602,26 +600,26 @@ export default function DepartmentDetailsPage() {
                     <th className="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                       Actions
                     </th>
+
                   </tr>
                 </thead>
 
                 <tbody className="divide-y">
+
                   {members.map((member) => {
-                    const currentStatus =
-                      String(
-                        member.status || 'ACTIVE'
-                      ).toUpperCase()
+
+                    const currentStatus = String(
+                      member.status || 'ACTIVE'
+                    ).toUpperCase()
 
                     const roleActionLoading =
                       memberAction === `role-${member.id}`
 
                     const statusActionLoading =
-                      memberAction ===
-                      `status-${member.id}`
+                      memberAction === `status-${member.id}`
 
                     const removeActionLoading =
-                      memberAction ===
-                      `remove-${member.id}`
+                      memberAction === `remove-${member.id}`
 
                     const actionLoading =
                       roleActionLoading ||
@@ -633,6 +631,7 @@ export default function DepartmentDetailsPage() {
                         key={member.id}
                         className="transition hover:bg-muted/20"
                       >
+
                         <td className="px-5 py-4">
                           <p className="font-semibold">
                             {member.full_name ||
@@ -672,7 +671,9 @@ export default function DepartmentDetailsPage() {
                         </td>
 
                         <td className="px-5 py-4">
+
                           <div className="flex flex-wrap justify-end gap-2">
+
                             <button
                               type="button"
                               onClick={() =>
@@ -686,6 +687,7 @@ export default function DepartmentDetailsPage() {
                               ) : (
                                 <Edit className="size-3.5" />
                               )}
+
                               Role
                             </button>
 
@@ -695,11 +697,7 @@ export default function DepartmentDetailsPage() {
                                 toggleMemberStatus(member)
                               }
                               disabled={actionLoading}
-                              className={`inline-flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 ${
-                                currentStatus === 'ACTIVE'
-                                  ? 'border-destructive/30 text-destructive hover:bg-destructive/10'
-                                  : 'text-success hover:bg-success/10'
-                              }`}
+                              className="inline-flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs font-semibold transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               {statusActionLoading ? (
                                 <Loader2 className="size-3.5 animate-spin" />
@@ -725,18 +723,27 @@ export default function DepartmentDetailsPage() {
                               ) : (
                                 <Trash2 className="size-3.5" />
                               )}
+
                               Remove
                             </button>
+
                           </div>
+
                         </td>
+
                       </tr>
                     )
                   })}
+
                 </tbody>
+
               </table>
+
             </div>
           )}
+
         </section>
+
       </div>
     </main>
   )

@@ -30,12 +30,12 @@ export default function CreateDepartmentPage() {
     const details = description.trim()
 
     if (!name) {
-      setError('Department name is required.')
+      setError('System Security name is required.')
       return
     }
 
     if (!code) {
-      setError('Department code is required.')
+      setError('System Security code is required.')
       return
     }
 
@@ -70,7 +70,7 @@ export default function CreateDepartmentPage() {
         throw new Error(
           data?.message ||
             data?.error ||
-            'Failed to create department.'
+            'Failed to create System Security.'
         )
       }
 
@@ -82,7 +82,7 @@ export default function CreateDepartmentPage() {
       setError(
         err instanceof Error
           ? err.message
-          : 'Department create nahi ho pa raha hai.'
+          : 'System Security create nahi ho pa raha hai.'
       )
     } finally {
       setLoading(false)
@@ -99,7 +99,7 @@ export default function CreateDepartmentPage() {
             className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             <ArrowLeft className="size-4" />
-            Back to Departments
+            Back to System Securities
           </Link>
 
           <div className="flex items-start gap-4">
@@ -113,11 +113,11 @@ export default function CreateDepartmentPage() {
               </p>
 
               <h1 className="mt-1 text-3xl font-bold tracking-tight">
-                Create Department
+                Create System Security
               </h1>
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Add a new department to the LegalLock system.
+                Add a new System Security to the LegalLock system.
               </p>
             </div>
           </div>
@@ -127,11 +127,11 @@ export default function CreateDepartmentPage() {
         <section className="rounded-lg border bg-card shadow-sm">
           <div className="border-b p-6">
             <h2 className="text-lg font-semibold">
-              Department Information
+              System Security Information
             </h2>
 
             <p className="mt-1 text-sm text-muted-foreground">
-              Enter the basic information for the new department.
+              Enter the basic information for the new System Security.
             </p>
           </div>
 
@@ -147,13 +147,13 @@ export default function CreateDepartmentPage() {
                 </div>
               )}
 
-              {/* Department Name */}
+              {/* System Security Name */}
               <div className="space-y-2">
                 <label
                   htmlFor="departmentName"
                   className="text-sm font-semibold"
                 >
-                  Department Name
+                  System Security Name
                   <span className="ml-1 text-destructive">*</span>
                 </label>
 
@@ -165,24 +165,24 @@ export default function CreateDepartmentPage() {
                   onChange={(event) =>
                     setDepartmentName(event.target.value)
                   }
-                  placeholder="e.g. Legal Affairs Department"
+                  placeholder="e.g. Legal Security System"
                   disabled={loading}
                   maxLength={150}
                   className="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
                 />
 
                 <p className="text-xs text-muted-foreground">
-                  Enter the official name of the department.
+                  Enter the official name of the System Security.
                 </p>
               </div>
 
-              {/* Department Code */}
+              {/* System Security Code */}
               <div className="space-y-2">
                 <label
                   htmlFor="departmentCode"
                   className="text-sm font-semibold"
                 >
-                  Department Code
+                  System Security Code
                   <span className="ml-1 text-destructive">*</span>
                 </label>
 
@@ -196,14 +196,14 @@ export default function CreateDepartmentPage() {
                       event.target.value.toUpperCase()
                     )
                   }
-                  placeholder="e.g. LEGAL-01"
+                  placeholder="e.g. SEC-01"
                   disabled={loading}
                   maxLength={40}
                   className="flex h-10 w-full rounded-md border bg-background px-3 py-2 font-mono text-sm uppercase outline-none transition placeholder:text-muted-foreground placeholder:normal-case focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
                 />
 
                 <p className="text-xs text-muted-foreground">
-                  Use a unique code for identifying the department.
+                  Use a unique code for identifying the System Security.
                 </p>
               </div>
 
@@ -223,7 +223,7 @@ export default function CreateDepartmentPage() {
                   onChange={(event) =>
                     setDescription(event.target.value)
                   }
-                  placeholder="Describe the department's purpose and responsibilities..."
+                  placeholder="Describe the System Security's purpose and responsibilities..."
                   disabled={loading}
                   rows={5}
                   maxLength={1000}
@@ -259,7 +259,7 @@ export default function CreateDepartmentPage() {
                 ) : (
                   <>
                     <Save className="size-4" />
-                    Create Department
+                    Create System Security
                   </>
                 )}
               </button>
@@ -273,8 +273,8 @@ export default function CreateDepartmentPage() {
             <span className="font-semibold text-foreground">
               Security:
             </span>{' '}
-            Department creation is restricted to authorized
-            administrators. The department creation action is also
+            System Security creation is restricted to authorized
+            administrators. The System Security creation action is also
             recorded in the system activity log.
           </p>
         </div>

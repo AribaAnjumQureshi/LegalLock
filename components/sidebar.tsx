@@ -6,7 +6,6 @@ import {
   Building2,
   FileText,
   FolderOpen,
-  Home,
   LayoutDashboard,
   LogOut,
   Settings,
@@ -27,7 +26,7 @@ const mainNavigation = [
     icon: FileText,
   },
   {
-    name: "Departments",
+    name: "System Securities",
     href: "/departments",
     icon: Building2,
   },
