@@ -260,4 +260,53 @@ router.get("/:id/download", async (req, res) => {
   fs.createReadStream(doc.storage_path).pipe(res)
 })
 
+// Delete document - owner only
+router.delete("/:id", async (req, res) => {
+  const { rows: docs } = await query("SELECT * FROM documents WHERE id=$1", [req.params.id])
+  const doc = docs[0]
+  
+  if (!doc) {
+    return res.status(404).json({ error: "Document not found" })
+  }
+  
+  if (doc.uploaded_by !== req.user.id) {
+    await logActivity({
+      userId: req.user.id,
+      action: "DELETE_DENIED",
+      targetType: "document",
+      targetId: req.params.id,
+      detail: { documentOwner: doc.uploaded_by, attemptedBy: req.user.id },
+      ip: req.ip,
+    })
+    return res.status(403).json({ error: "Only the document owner can delete this document" })
+  }
+
+  try {
+    await fs.promises.unlink(doc.storage_path).catch(() => {})
+    
+    const { rows: versions } = await query(
+      "SELECT storage_path FROM document_versions WHERE document_id=$1",
+      [req.params.id],
+    )
+    for (const version of versions) {
+      await fs.promises.unlink(version.storage_path).catch(() => {})
+    }
+
+    await query("DELETE FROM documents WHERE id=$1", [req.params.id])
+    
+    await logActivity({
+      userId: req.user.id,
+      action: "DOCUMENT_DELETED",
+      targetType: "document",
+      targetId: req.params.id,
+      detail: { documentName: doc.name, caseId: doc.case_id, fileSize: doc.file_size },
+      ip: req.ip,
+    })
+    
+    return res.json({ success: true, message: "Document deleted successfully", documentId: req.params.id })
+  } catch (err) {
+    console.error("[documents/delete]", err.message)
+    return res.status(500).json({ error: "Failed to delete document", details: err.message })
+  }
+}) 
 module.exports = router
