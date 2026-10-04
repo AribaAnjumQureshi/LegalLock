@@ -178,7 +178,8 @@ router.get("/:id/versions", async (req, res) => {
   if (!await requireDocumentAccess(req, res, req.params.id, "read")) return
   const { rows } = await query(
     `SELECT v.id, v.version_number, v.original_name, v.mime_type, v.file_size,
-            v.sha256_hash, v.created_at, u.username AS created_by_username
+            v.created_at, u.username AS created_by_username,
+            u.full_name AS created_by_name, u.official_id AS created_by_official_id
      FROM document_versions v JOIN users u ON u.id=v.created_by
      WHERE v.document_id=$1 ORDER BY v.version_number DESC`,
     [req.params.id],

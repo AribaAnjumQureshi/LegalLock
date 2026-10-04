@@ -141,7 +141,7 @@ app.get("/api/activity", authenticate, async (req, res) => {
   const isAdmin = req.user.role === "admin"
   const { rows } = await query(
     `SELECT a.id, a.action, a.target_type, a.target_id, a.detail, a.ip_address, a.created_at,
-            u.username AS actor_username, u.full_name AS actor_name, u.email AS actor_email,
+            u.username AS actor_username, u.full_name AS actor_name, u.official_id AS actor_official_id,  u.email AS actor_email,
             u.role AS actor_role
      FROM activity_logs a LEFT JOIN users u ON u.id=a.user_id
      WHERE ($2::boolean = true OR a.user_id=$1)

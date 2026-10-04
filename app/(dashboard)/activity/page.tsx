@@ -13,6 +13,8 @@ type Activity = {
   ip_address?: string
   created_at: string
   actor_username?: string
+  actor_name?: string
+  actor_official_id?: string
   actor_email?: string
   actor_role?: string
 }
@@ -73,12 +75,27 @@ export default function ActivityPage() {
         <div className="flex items-center justify-between border-b px-5 py-3">
           <h2 className="text-sm font-semibold">Events ({visible.length})</h2>
           <select value={filter} onChange={e=>setFilter(e.target.value)} className="h-8 rounded-sm border px-2 text-xs">
-            <option value="all">All</option><option value="LOGIN_SUCCESS">Logins</option><option value="DOCUMENT_UPLOADED">Uploads</option><option value="DOCUMENT_VIEWED">Views</option><option value="DOCUMENT_DOWNLOADED">Downloads</option><option value="ACCESS_REQUESTED">Access Requests</option><option value="denied">Denied</option>
+            <option value="all">All</option><option value="LOGIN_SUCCESS">Logins</option><option value="DOCUMENT_UPLOADED">Uploads</option><option value="DOCUMENT_VIEWED">Views</option><option value="DOCUMENT_DOWNLOADED">Downloads</option><option value="ACCESS_REQUESTED">Access Requests</option> <option value="VERSION_CREATED">Version Changes</option> <option value="denied">Denied</option>
           </select>
         </div>
         <ul className="divide-y">{visible.map(e=><li key={String(e.id)} className="flex flex-wrap gap-3 px-5 py-4">
-          <div className="min-w-0 flex-1"><p className="text-sm"><b>{e.actor_username || 'Unknown'}</b> <span className="text-muted-foreground">{e.action}</span> {e.target_id && <code className="text-xs">{e.target_id}</code>}</p><p className="mt-1 text-[11px] text-muted-foreground">{new Date(e.created_at).toLocaleString()} · {e.ip_address || 'IP unavailable'} · {e.actor_email || ''}</p></div>
-          <span className="text-xs text-muted-foreground">{e.detail ? JSON.stringify(e.detail) : ''}</span>
+                    <div className="min-w-0 flex-1">
+            <p className="text-sm">
+              <b>Modified By:</b> {e.actor_name || e.actor_username || 'Unknown'}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              <b>Officer ID:</b> {e.actor_official_id || 'N/A'}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              <b>Action:</b> {e.action}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              <b>Version:</b> {e.detail?.version ? `V${e.detail.version}` : '—'}
+            </p>
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              <b>Date & Time:</b> {new Date(e.created_at).toLocaleString()}
+            </p>
+          </div>
         </li>)}</ul>
       </section>
     </main>
